@@ -1,8 +1,12 @@
 extends Node
 
+
 @export var Storlek: Vector2
 @export_range(0,1) var SvängChans: float
 @export var tileMap: TileMap
+
+var krysset := [Vector2i(0,-1),Vector2i(1,0),Vector2i(0,1),Vector2i(-1,0)]
+var hörnen := [Vector2i(1,1),Vector2i(-1,1),Vector2i(1,-1),Vector2i(-1,-1)]
 
 var rng := RandomNumberGenerator.new()
 
@@ -23,8 +27,47 @@ func blandaLista(lista:Array):
 		lista[index1] = lista[index2]
 		lista[index2] = t
 
-func sättPositionPåKartan(karta:Array, position:Vector2i, värde:int):
-	karta[position.x][position.y] = värde
+func sättPixel(map:Array, position:Vector2, värde:int):
+	map[position.x][position.y] = värde
+
+func ritaUtPixel(map:Array, position:Vector2i, riktning:int, värde:int):
+	map[position.x][position.y] = värde
+	var positionB = position + krysset[riktning]
+	var mapPositionB = map[positionB.x][positionB.y]
+		
+	if mapPositionB == 0:
+		sättPixel(map, positionB, 3)
+	elif mapPositionB == 2 or mapPositionB == 3:
+		sättPixel(map, positionB, 4)
+	var krC = Vector2i(krysset[riktning].y, krysset[riktning].x)
+	var positionC = position + krC
+	var mapPositionC = map[positionC.x][positionC.y]		
+	if mapPositionC == 2:
+		sättPixel(map, positionC, 3)
+	elif mapPositionC == 3:
+		sättPixel(map, positionC, 4)
+
+	positionC = position - krC
+	mapPositionC = map[positionC.x][positionC.y]
+	if mapPositionC == 2:
+		sättPixel(map, positionC, 3)
+	elif mapPositionC == 3:
+		sättPixel(map, positionC, 4)
+
+	positionC = position + krC + krysset[riktning]
+	mapPositionC = map[positionC.x][positionC.y]
+	if mapPositionC == 0:
+		sättPixel(map, positionC, 2)
+	elif mapPositionC == 2 or mapPositionC == 3:
+		sättPixel(map, positionC, 4)
+
+	positionC = position - krC + krysset[riktning]
+	mapPositionC = map[positionC.x][positionC.y]
+	if mapPositionC == 0:
+		sättPixel(map, positionC, 2)
+	elif mapPositionC == 2 or mapPositionC == 3:
+		sättPixel(map, positionC, 4)
+
 
 func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
 	var map := []
@@ -37,18 +80,17 @@ func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
 				map[x].append(0)
 			
 			
-	var krysset := [Vector2i(0,-1),Vector2i(1,0),Vector2i(0,1),Vector2i(-1,0)]
-	var hörnen := [Vector2i(1,1),Vector2i(-1,1),Vector2i(1,-1),Vector2i(-1,-1)]
 	var riktning = 0
 	
 	var position := startPosition
 	map[position.x][position.y] = 1
 	for i in krysset:
-		sättPositionPåKartan(map, position + i, 3)
+		sättPixel(map, position + i, 3)
 	for i in hörnen:
-		sättPositionPåKartan(map, position + i, 2)
+		sättPixel(map, position + i, 2)
 	
-	for index in range(10):
+#	for aa in range(3):
+	while true:
 		while true:
 			if rng.randf_range(0.0,1.0) < SvängChans:
 				#Om man ska byta riktning
@@ -74,43 +116,7 @@ func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
 					if !hittade:
 						break
 			position += krysset[riktning]
-			sättPositionPåKartan(map, position, 1)
-		
-			var positionB = position + krysset[riktning]
-			var mapPositionB = map[positionB.x][positionB.y]
-		
-			if mapPositionB == 0:
-				sättPositionPåKartan(map, positionB, 3)
-			elif mapPositionB == 2 or mapPositionB == 3:
-				sättPositionPåKartan(map, positionB, 4)
-			var krC = Vector2i(krysset[riktning].y, krysset[riktning].x)
-			var positionC = position + krC
-			var mapPositionC = map[positionC.x][positionC.y]		
-			if mapPositionC == 2:
-				sättPositionPåKartan(map, positionC, 3)
-			elif mapPositionC == 3:
-				sättPositionPåKartan(map, positionC, 4)
-		
-			positionC = position - krC
-			mapPositionC = map[positionC.x][positionC.y]
-			if mapPositionC == 2:
-				sättPositionPåKartan(map, positionC, 3)
-			elif mapPositionC == 3:
-				sättPositionPåKartan(map, positionC, 4)
-		
-			positionC = position + krC + krysset[riktning]
-			mapPositionC = map[positionC.x][positionC.y]
-			if mapPositionC == 0:
-				sättPositionPåKartan(map, positionC, 2)
-			elif mapPositionC == 2 or mapPositionC == 3:
-				sättPositionPåKartan(map, positionC, 4)
-		
-			positionC = position - krC + krysset[riktning]
-			mapPositionC = map[positionC.x][positionC.y]
-			if mapPositionC == 0:
-				sättPositionPåKartan(map, positionC, 2)
-			elif mapPositionC == 2 or mapPositionC == 3:
-				sättPositionPåKartan(map, positionC, 4)
+			ritaUtPixel(map, position, riktning, 1)
 		
 		var grenKandidater := []
 		for x in range(len(map)):
@@ -122,11 +128,11 @@ func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
 			return map
 			
 		position = grenKandidater[rng.randi_range(0, len(grenKandidater) - 1)]
-		sättPositionPåKartan(map,position,1)
-			
 		for i in range(len(krysset)):
 			if map[krysset[i].x + position.x][krysset[i].y + position.y] == 0:
 				riktning = i
+		ritaUtPixel(map,position,riktning,1)
+			
 	return map
 
 func _ready():

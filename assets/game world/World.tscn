@@ -15,7 +15,7 @@ Height = 100
 [node name="World Generator2" parent="." node_paths=PackedStringArray("tileMap") instance=ExtResource("1")]
 script = ExtResource("3_lt0xp")
 Storlek = Vector2(100, 100)
-"SvängChans" = 0.179
+"SvängChans" = 0.25
 tileMap = NodePath("../TileMap")
 
 [node name="Camera2D" type="Camera2D" parent="."]
