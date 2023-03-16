@@ -1,15 +1,15 @@
 2a60927148abd1d33b818b535e306557
-::res://::1678015226
-default_env.tres::Environment::7584055720879155957::1678003815::0::1::::<><>::
+::res://::1678989056
+default_env.tres::Environment::7584055720879155957::1678949735::0::1::::<><>::
 icon.png::CompressedTexture2D::3860198610168468082::1676657455::1677862507::1::::<><>::
 ::res://assets/::1678001366
-::res://assets/game world/::1678003815
-World.tscn::PackedScene::4710754141095186661::1678003815::0::1::::<><>::res://assets/game world/World generator/World Generator.tscn<>uid://cvmbkxqcf8epb<>res://assets/game world/World generator/World Generator.gd<>res://assets/game world/World generator/World Generator2.gd
-::res://assets/game world/World generator/::1678003556
-World Generator2.gd::GDScript::-1::1678003556::0::1::::<>Node<>::
-World Generator.gd::GDScript::-1::1678000757::0::1::::<>Node<>::
+::res://assets/game world/::1678949735
+World.tscn::PackedScene::4710754141095186661::1678949735::0::1::::<><>::res://assets/game world/World generator/World Generator.tscn<>uid://cvmbkxqcf8epb<>res://assets/game world/World generator/World Generator.gd<>res://assets/game world/World generator/World Generator2.gd
+::res://assets/game world/World generator/::1678949735
+World Generator2.gd::GDScript::-1::1678900650::0::1::::<>Node<>::
+World Generator.gd::GDScript::-1::1678949735::0::1::::<>Node<>::
 World Generator.tscn::PackedScene::-1::1677862495::0::1::::<><>::
-::res://assets/game world/World generator/Tilemap/::1678003815
+::res://assets/game world/World generator/Tilemap/::1678949735
 färger.png::CompressedTexture2D::5169640032740541455::1676721770::1677862507::1::::<><>::
-TileMap.tscn::PackedScene::6271659424618193575::1678003815::0::1::::<><>::uid://qpmtox2wi6j8
-tileset.tres::TileSet::1154750470630715407::1678000757::0::1::::<><>::uid://cfwhhl0phiaux
+TileMap.tscn::PackedScene::6271659424618193575::1678949735::0::1::::<><>::uid://qpmtox2wi6j8
+tileset.tres::TileSet::1154750470630715407::1678949735::0::1::::<><>::uid://cfwhhl0phiaux

@@ -8,6 +8,8 @@ extends Node
 var krysset := [Vector2i(0,-1),Vector2i(1,0),Vector2i(0,1),Vector2i(-1,0)]
 var hörnen := [Vector2i(1,1),Vector2i(-1,1),Vector2i(1,-1),Vector2i(-1,-1)]
 
+var indexIMapHistory := 0
+
 var rng := RandomNumberGenerator.new()
 
 
@@ -88,7 +90,7 @@ func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
 		sättPixel(map, position + i, 3)
 	for i in hörnen:
 		sättPixel(map, position + i, 2)
-	
+
 #	for aa in range(3):
 	while true:
 		while true:
@@ -117,7 +119,9 @@ func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
 						break
 			position += krysset[riktning]
 			ritaUtPixel(map, position, riktning, 1)
-		
+			ritaKarta(map)
+
+		var hittade = false
 		var grenKandidater := []
 		for x in range(len(map)):
 			for y in range(len(map[x])):
@@ -129,13 +133,22 @@ func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
 			
 		position = grenKandidater[rng.randi_range(0, len(grenKandidater) - 1)]
 		for i in range(len(krysset)):
-			if map[krysset[i].x + position.x][krysset[i].y + position.y] == 0:
+			if map[krysset[i].x + position.x][krysset[i].y + position.y] == 1:
 				riktning = i
-		ritaUtPixel(map,position,riktning,1)
+				hittade = true
+				break
+		if !hittade:
+			print("error")
+			breakpoint
+		for i in range(len(krysset)):
+			if krysset[i].x + krysset[riktning].x == 0 && krysset[i].y + krysset[riktning].y == 0:
+				riktning = i
+				break
 			
+		ritaUtPixel(map,position,riktning,1)
+		ritaKarta(map)
 	return map
 
 func _ready():
 	rng.randomize()
-	var bm = generate(Storlek,Vector2i(5,5))
-	ritaKarta(bm)
+	ritaKarta(generate(Storlek,Vector2i(5,5)))
