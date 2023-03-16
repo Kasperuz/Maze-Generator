@@ -6,23 +6,13 @@
 
 [node name="World" type="Node2D"]
 
-[node name="World Generator" parent="." node_paths=PackedStringArray("tileMap") instance=ExtResource("1")]
+[node name="World Generator" parent="." instance=ExtResource("1")]
 script = ExtResource("3_lt0xp")
-Storlek = Vector2(50, 50)
-"SvängChans" = 0.321
-tileMap = NodePath("../TileMap")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 zoom = Vector2(6.388, 6.388)
 
 [node name="TileMap" parent="." instance=ExtResource("2")]
-
-[node name="->" type="Button" parent="."]
-offset_left = 157.0
-offset_top = 69.0
-offset_right = 180.0
-offset_bottom = 100.0
-text = "->"
 
 [editable path="TileMap"]
