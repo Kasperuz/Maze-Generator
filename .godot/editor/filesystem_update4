@@ -1,6 +1,3 @@
 res://default_env.tres
-res://assets/game world/World.tscn
-res://assets/game world/World generator/World Generator.gd
-res://assets/game world/World generator/Tilemap/tileset.tres
-res://assets/game world/World generator/Tilemap/TileMap.tscn
-res://assets/game world/World generator/World Generator2.gd
+res://World.tscn
+res://Debug/Tilemap/tileset.tres

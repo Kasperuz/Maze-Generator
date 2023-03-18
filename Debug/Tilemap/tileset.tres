@@ -1,6 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://qpmtox2wi6j8"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cay2aonqwg2j8"]
 
-[ext_resource type="Texture2D" uid="uid://cfwhhl0phiaux" path="res://assets/game world/World generator/Tilemap/färger.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cfwhhl0phiaux" path="res://Debug/Tilemap/Colors.png" id="1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xm17k"]
 texture = ExtResource("1")

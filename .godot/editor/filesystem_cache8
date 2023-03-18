@@ -1,15 +1,12 @@
 2a60927148abd1d33b818b535e306557
-::res://::1678989056
-default_env.tres::Environment::7584055720879155957::1678949735::0::1::::<><>::
+::res://::1679147865
+default_env.tres::Environment::2176442672185958709::1678992197::0::1::::<><>::
 icon.png::CompressedTexture2D::3860198610168468082::1676657455::1677862507::1::::<><>::
-::res://assets/::1678001366
-::res://assets/game world/::1678949735
-World.tscn::PackedScene::4710754141095186661::1678949735::0::1::::<><>::res://assets/game world/World generator/World Generator.tscn<>uid://cvmbkxqcf8epb<>res://assets/game world/World generator/World Generator.gd<>res://assets/game world/World generator/World Generator2.gd
-::res://assets/game world/World generator/::1678949735
-World Generator2.gd::GDScript::-1::1678900650::0::1::::<>Node<>::
-World Generator.gd::GDScript::-1::1678949735::0::1::::<>Node<>::
-World Generator.tscn::PackedScene::-1::1677862495::0::1::::<><>::
-::res://assets/game world/World generator/Tilemap/::1678949735
-färger.png::CompressedTexture2D::5169640032740541455::1676721770::1677862507::1::::<><>::
-TileMap.tscn::PackedScene::6271659424618193575::1678949735::0::1::::<><>::uid://qpmtox2wi6j8
-tileset.tres::TileSet::1154750470630715407::1678949735::0::1::::<><>::uid://cfwhhl0phiaux
+Labyrinth Generator.gd::GDScript::-1::1678991794::0::1::::<>Node<>::
+Labyrinth Generator.tscn::PackedScene::7567385450505099437::1678991465::0::1::::<><>::
+World.tscn::PackedScene::3506091506655253715::1678992197::0::1::::<><>::uid://df2xy6co4jgq4<>res://Labyrinth Generator.gd<>uid://spejewrln48u
+::res://Debug/::1678991269
+::res://Debug/Tilemap/::1678991303
+Colors.png::CompressedTexture2D::5169640032740541455::1676721770::1678991302::1::::<><>::
+TileMap.tscn::PackedScene::1294624036778434722::1678991269::0::1::::<><>::res://Debug/Tilemap/tileset.tres
+tileset.tres::TileSet::-1::1678991302::0::1::::<><>::uid://cfwhhl0phiaux

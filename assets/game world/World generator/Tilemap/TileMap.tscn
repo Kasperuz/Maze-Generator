@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvmbkxqcf8epb"]
-
-[ext_resource type="TileSet" uid="uid://qpmtox2wi6j8" path="res://assets/game world/World generator/Tilemap/tileset.tres" id="1"]
-
-[node name="TileMap" type="TileMap"]
-tile_set = ExtResource("1")
-cell_quadrant_size = 1
-format = 2

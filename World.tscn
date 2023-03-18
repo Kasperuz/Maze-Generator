@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp7m2x8t0vp68"]
+
+[ext_resource type="PackedScene" uid="uid://df2xy6co4jgq4" path="res://Labyrinth Generator.tscn" id="1_nrlyt"]
+[ext_resource type="Script" path="res://Labyrinth Generator.gd" id="2_6bseh"]
+[ext_resource type="PackedScene" uid="uid://spejewrln48u" path="res://Debug/Tilemap/TileMap.tscn" id="3_ufld3"]
+
+[node name="World" type="Node2D"]
+
+[node name="World Generator" parent="." node_paths=PackedStringArray("OutputTilemap") instance=ExtResource("1_nrlyt")]
+script = ExtResource("2_6bseh")
+Size = Vector2i(50, 50)
+StartPosition = Vector2i(5, 5)
+TurnChance = 0.248
+OutputTilemap = NodePath("../TileMap")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(6.388, 6.388)
+
+[node name="TileMap" parent="." instance=ExtResource("3_ufld3")]
+
+[editable path="TileMap"]

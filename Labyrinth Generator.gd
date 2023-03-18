@@ -1,7 +1,7 @@
 extends Node
 
-
-@export var Size: Vector2
+@export var Size: Vector2i
+@export var StartPosition: Vector2i
 @export_range(0,1) var TurnChance: float
 @export var OutputTilemap: TileMap
 
