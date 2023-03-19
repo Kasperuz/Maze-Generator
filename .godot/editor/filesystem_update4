@@ -1,3 +1,6 @@
 res://default_env.tres
-res://World.tscn
+res://Labyrinth Generator.tscn
 res://Debug/Tilemap/tileset.tres
+res://Debug/Tilemap/TileMap.tscn
+res://World.tscn
+res://Labyrinth Generator.gd

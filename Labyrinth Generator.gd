@@ -10,6 +10,41 @@ var corners := [Vector2i(1,1),Vector2i(-1,1),Vector2i(1,-1),Vector2i(-1,-1)]
 
 var rng := RandomNumberGenerator.new()
 
+var startDirection := 0
+
+func isOnMap(position):
+	return position.x <= Size.x and position.x >= 0 and position.y <= Size.y and position.y >= 0
+
+func goOneStep(map: Array, position: Vector2i, direction: int) -> Array:
+#	position += cross[direction]
+	var stepsAway := 0
+	var farthestAwayPosition := position
+	for i in range(len(cross)):
+		var newPos = position + cross[i]
+		var tmp = cross[i] + cross[direction]
+		if !isOnMap(newPos):
+			continue
+		if map[newPos.x][newPos.y] == 1 and not (tmp.x == 0 and tmp.y == 0):
+			var data := goOneStep(map, position + cross[i], i)
+			if data[1] > stepsAway:
+				stepsAway = data[1]
+				farthestAwayPosition = data[0]
+	return [farthestAwayPosition,stepsAway + 1]
+
+func findGoal(map):
+	#Om man ska byta direction
+	mixList(cross)
+	for directionToTest in range(len(cross)):
+		if (
+		(cross[directionToTest] + StartPosition).x > 0 and
+		(cross[directionToTest] + StartPosition).x < Size.x and
+		(cross[directionToTest] + StartPosition).y > 0 and
+		(cross[directionToTest] + StartPosition).y < Size.y
+		):
+			startDirection = directionToTest
+			break
+	var data := goOneStep(map, StartPosition, startDirection)
+	setPixel(map,data[0],6)
 
 func drawMapToTilemap(map):
 	for x in range(len(map)):
@@ -68,27 +103,36 @@ func drawPixel(map:Array, position:Vector2i, direction:int, value:int):
 	elif mapPositionC == 2 or mapPositionC == 3:
 		setPixel(map, positionC, 4)
 
-
-func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
+func generate() -> Array:
 	rng.randomize()
 	var map := []
-	for x in range(storlek.x):
+	for x in range(Size.x):
 		map.append([])
-		for y in range(storlek.y):
-			if x == 0 or x == storlek.x - 1 or y == 0 or y == storlek.y - 1:
+		for y in range(Size.y):
+			if x == 0 or x == Size.x - 1 or y == 0 or y == Size.y - 1:
 				map[x].append(4)
 			else:
 				map[x].append(0)
 			
 			
-	var direction = 0
+	var direction := 0
 	
-	var position := startPosition
-	map[position.x][position.y] = 1
-	for i in cross:
-		setPixel(map, position + i, 3)
-	for i in corners:
-		setPixel(map, position + i, 2)
+	var position := StartPosition
+	#Om man ska byta direction
+	mixList(cross)
+	for directionToTest in range(len(cross)):
+		if (
+		(cross[directionToTest] + position).x > 0 and
+		(cross[directionToTest] + position).x < Size.x and
+		(cross[directionToTest] + position).y > 0 and
+		(cross[directionToTest] + position).y < Size.y
+		):
+			startDirection = directionToTest
+			break
+	direction = startDirection
+	drawPixel(map,position,direction,1)
+	position += cross[direction]
+	drawPixel(map,position,direction,1)
 
 	while true:
 		while true:
@@ -145,7 +189,12 @@ func generate(storlek:Vector2i, startPosition:Vector2i,) -> Array:
 			
 		drawPixel(map,position,direction,1)
 		drawMapToTilemap(map)
+		setPixel(map,StartPosition,5)
 	return map
 
+
+
 func _ready():
-	drawMapToTilemap(generate(Size,Vector2i(5,5)))
+	var map := generate()
+	findGoal(map)
+	drawMapToTilemap(map)

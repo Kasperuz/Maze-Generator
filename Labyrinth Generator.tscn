@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://df2xy6co4jgq4"]
+[gd_scene load_steps=2 format=3 uid="uid://df2xy6co4jgq4"]
+
+[ext_resource type="Script" path="res://Labyrinth Generator.gd" id="1_garer"]
 
 [node name="Labyrinth Generator" type="Node"]
+script = ExtResource("1_garer")

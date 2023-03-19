@@ -1,16 +1,40 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cay2aonqwg2j8"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://b4vw2p0kk04ca"]
 
-[ext_resource type="Texture2D" uid="uid://cfwhhl0phiaux" path="res://Debug/Tilemap/Colors.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://181wbdyelll" path="res://Debug/Tilemap/pixil-frame-0.png" id="1_fxhc5"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xm17k"]
-texture = ExtResource("1")
-texture_region_size = Vector2i(1, 1)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_b4jhl"]
+vertices = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xb4i3"]
+vertices = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gu1j1"]
+vertices = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)])
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3dei"]
+texture = ExtResource("1_fxhc5")
+texture_region_size = Vector2i(100, 100)
 0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_b4jhl")
 0:1/0 = 0
 0:2/0 = 0
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_xb4i3")
 0:3/0 = 0
 0:4/0 = 0
+0:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gu1j1")
+0:5/0 = 0
+0:6/0 = 0
+0:7/0 = 0
+0:8/0 = 0
+0:9/0 = 0
 
 [resource]
-tile_size = Vector2i(1, 1)
-sources/0 = SubResource("TileSetAtlasSource_xm17k")
+tile_size = Vector2i(100, 100)
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_l3dei")
